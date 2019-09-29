@@ -227,6 +227,7 @@ def run(mytransform, trial, lr = INITIAL_LR):
             pass
         avg_acc = correct_examples / total_examples
         print("Training loss: %.4f, Training accuracy: %.4f" %(avg_loss, avg_acc))
+        printOutput(i, avg_acc.item(),trial)
         print(datetime.datetime.now())
         # Validate on the validation dataset
         print("Validation...")
@@ -258,7 +259,7 @@ def run(mytransform, trial, lr = INITIAL_LR):
         avg_loss = val_loss / len(valloader)
         avg_acc = correct_examples / total_examples
         print("Validation loss: %.4f, Validation accuracy: %.4f" % (avg_loss, avg_acc))
-        printOutput(i, avg_acc.item(),trial)
+        #printOutput(i, avg_acc.item(),trial)
             
         """
         Assignment 4(b)
