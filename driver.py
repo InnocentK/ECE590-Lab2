@@ -2,9 +2,9 @@ from lenet5cifar10 import *
 
 def main():
     mytransforms = [
-        #transforms.Compose([transforms.ToTensor(), NORMALIZE]),
-        #transforms.Compose([transforms.RandomHorizontalFlip(),transforms.ToTensor(), NORMALIZE]),
-        transforms.Compose([transforms.RandomCrop(5,1),transforms.ToTensor(), NORMALIZE]),
+        transforms.Compose([transforms.ToTensor(), NORMALIZE]),
+        transforms.Compose([transforms.RandomHorizontalFlip(),transforms.ToTensor(), NORMALIZE]),
+        transforms.Compose([transforms.RandomCrop(5),transforms.ToTensor(), NORMALIZE]),
         #transforms.Compose([transforms.Pad(4),transforms.ToTensor(), NORMALIZE]),
         transforms.Compose([transforms.RandomHorizontalFlip(),transforms.RandomCrop(5),transforms.ToTensor(), NORMALIZE]),
         #transforms.Compose([transforms.RandomHorizontalFlip(),transforms.Pad(4),transforms.ToTensor(), NORMALIZE]),
