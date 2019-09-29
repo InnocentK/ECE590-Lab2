@@ -29,11 +29,9 @@ class LeNet5(nn.Module):
         
                 
         self.conv1 = nn.Conv2d(3, 6, 5)
-        self.conv1bn = nn.BatchNorm2d(6, eps=1e-5, momentum=0.1, affine=True,
-                 track_running_stats=True)
+        self.conv1bn = nn.BatchNorm2d(6)
         self.conv2 = nn.Conv2d(6, 16, 5)
-        self.conv2bn = nn.BatchNorm2d(16, eps=1e-5, momentum=0.1, affine=True,
-                 track_running_stats=True)
+        self.conv2bn = nn.BatchNorm2d(16)
         self.fc1 = nn.Linear(16*5*5, 120)
         self.fc2 = nn.Linear(120, 84)
         self.fc3 = nn.Linear(84, 10)
@@ -123,6 +121,7 @@ def run(mytransform, trial):
     # Specify the device for computation
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     net = LeNet5()
+    net = nn.DataParallel(net)
     net = net.to(device)
     if device =='cuda':
         print("Train on GPU...")
