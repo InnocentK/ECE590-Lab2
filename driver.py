@@ -1,10 +1,10 @@
-from lenet5cifar10 import *
+from lenet5cifar102 import *
 
 def main():
     mytransform = transforms.Compose([transforms.ToTensor(), NORMALIZE])
-    run(mytransform, 10)
-    run(mytransform, 11, 0.02)
-    run(mytransform, 12, 0.04)
+    run(mytransform, 13)
+    run(mytransform, 14, 0.02)
+    run(mytransform, 15, 0.04)
     #mytransforms = [
         #transforms.Compose([transforms.ToTensor(), NORMALIZE])#,
         #transforms.Compose([transforms.RandomHorizontalFlip(),transforms.ToTensor(), NORMALIZE]),
