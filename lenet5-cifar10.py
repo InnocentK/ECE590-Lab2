@@ -100,7 +100,7 @@ def run(mytransform, trial):
     #transform_train = transforms.Compose([
         #transforms.RandomHorizontalFlip(),
         #transforms.RandomCrop(2),
-        #transforms.Pad(2),
+        #transforms.Pad(5),
         #transforms.ToTensor(), 
         #transforms.Normalize(mean=[0.4914, 0.4822, 0.4465], std=[0.2023, 0.1994, 0.2010])])
     transform_train = mytransform
