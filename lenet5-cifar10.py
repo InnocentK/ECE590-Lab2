@@ -73,7 +73,7 @@ def printOutput(epoch, val_acc, trial_no = 0):
 
     out_file.write(str(epoch) + "," + str(val_acc) + "\n")
     out_file.close()
-    
+
 def runCNN(mytransform, trial):
     """
     Assignment 2(b)
@@ -296,17 +296,17 @@ def runCNN(mytransform, trial):
 
     print("Optimization finished.")
 
-    def main():
-        mytransforms = [
-            transforms.Compose([transforms.ToTensor(), NORMALIZE]),
-            transforms.Compose([transforms.RandomHorizontalFlip(),transforms.ToTensor(), NORMALIZE]),
-            transforms.Compose([transforms.RandomCrop(2),transforms.ToTensor(), NORMALIZE]),
-            transforms.Compose([transforms.Pad(2),transforms.ToTensor(), NORMALIZE]),
-            transforms.Compose([transforms.RandomHorizontalFlip(),transforms.RandomCrop(2),transforms.ToTensor(), NORMALIZE]),
-            transforms.Compose([transforms.RandomHorizontalFlip(),transforms.Pad(2),transforms.ToTensor(), NORMALIZE]),
-            transforms.Compose([transforms.RandomCrop(2),transforms.Pad(2),transforms.ToTensor(), NORMALIZE]),
-            transforms.Compose([transforms.RandomHorizontalFlip(),transforms.RandomCrop(2),transforms.Pad(2),transforms.ToTensor(), NORMALIZE])
-        ]
-        for i,transform in enumerate(mytransforms):
-            runCNN(transform, i)
-    main()
+def main():
+    mytransforms = [
+        transforms.Compose([transforms.ToTensor(), NORMALIZE]),
+        transforms.Compose([transforms.RandomHorizontalFlip(),transforms.ToTensor(), NORMALIZE]),
+        transforms.Compose([transforms.RandomCrop(2),transforms.ToTensor(), NORMALIZE]),
+        transforms.Compose([transforms.Pad(2),transforms.ToTensor(), NORMALIZE]),
+        transforms.Compose([transforms.RandomHorizontalFlip(),transforms.RandomCrop(2),transforms.ToTensor(), NORMALIZE]),
+        transforms.Compose([transforms.RandomHorizontalFlip(),transforms.Pad(2),transforms.ToTensor(), NORMALIZE]),
+        transforms.Compose([transforms.RandomCrop(2),transforms.Pad(2),transforms.ToTensor(), NORMALIZE]),
+        transforms.Compose([transforms.RandomHorizontalFlip(),transforms.RandomCrop(2),transforms.Pad(2),transforms.ToTensor(), NORMALIZE])
+    ]
+    for i,transform in enumerate(mytransforms):
+        runCNN(transform, i)
+main()
