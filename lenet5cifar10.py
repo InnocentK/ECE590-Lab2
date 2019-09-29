@@ -128,7 +128,7 @@ def run(mytransform, trial):
         print("Train on CPU...")
 
     print("Checkpoint 1")
-    #net = nn.DataParallel(net)
+    net = nn.DataParallel(net)
     print("Checkpoint 2")
     # FLAG for loading the pretrained model
     TRAIN_FROM_SCRATCH = False
