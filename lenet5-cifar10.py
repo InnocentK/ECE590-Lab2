@@ -45,7 +45,7 @@ class LeNet5(nn.Module):
         out = F.relu(self.fc2(out))
         out = self.fc3(out)
         return out
-        
+
 """
 Hyperparameter optimization in assignment 4(a), 4(b) can be 
 conducted here.
@@ -62,6 +62,17 @@ REG = 1e-4
 EPOCHS = 30
 DATAROOT = "./data"
 CHECKPOINT_PATH = "./saved_model"
+OUTROOT = "./output"
+
+
+def printOutput(epoch, val_acc, trial_no = 0):
+    out_file = open(OUTROOT + "/results(" + str(trial_no) + ").csv", "a+")
+    
+    if i == 0:
+        out_file.write("Epoch,Accuracy\n")
+
+    out_file.write(str(epoch) + "," + str(val_acc) + "\n")
+    out_file.close()
 
 """
 Assignment 2(b)
@@ -152,8 +163,8 @@ and momentum 0.9 as a start.
 # Create loss function and specify regularization
 criterion = nn.CrossEntropyLoss() #must add regularization
 # Add optimizer
-optimizer = optim.Adam(net.parameters(), lr=INITIAL_LR, betas=(MOMENTUM, 0.999), weight_decay=REG)
-#optim.SGD(net.parameters(), lr = INITIAL_LR, momentum = MOMENTUM, weight_decay=REG) #finished??
+optimizer = optim.SGD(net.parameters(), lr= INITIAL_LR, momentum=MOMENTUM, weight_decay=REG)
+#optim.Adam(net.parameters(), lr=INITIAL_LR, betas=(MOMENTUM, 0.999), weight_decay=REG)
 
 
 """
@@ -242,7 +253,7 @@ for i in range(start_epoch, EPOCHS):
     avg_loss = val_loss / len(valloader)
     avg_acc = correct_examples / total_examples
     print("Validation loss: %.4f, Validation accuracy: %.4f" % (avg_loss, avg_acc))
-
+    printOutput(i, avg_acc)
         
     """
     Assignment 4(b)
