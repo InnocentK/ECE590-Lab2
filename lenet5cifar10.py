@@ -120,9 +120,11 @@ def run(mytransform, trial):
 
     # Specify the device for computation
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    print("Checkpoint 1")
     net = LeNet5()
-    net = nn.DataParallel(net)
+    print("Checkpoint 2")
     net = net.to(device)
+    print("Checkpoint 3")
     if device =='cuda':
         print("Train on GPU...")
     else:
