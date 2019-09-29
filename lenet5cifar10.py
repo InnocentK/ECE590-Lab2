@@ -127,13 +127,10 @@ def run(mytransform, trial):
     else:
         print("Train on CPU...")
 
-    print("Checkpoint 1")
-    net = nn.DataParallel(net)
-    print("Checkpoint 2")
     # FLAG for loading the pretrained model
     TRAIN_FROM_SCRATCH = False
     # Code for loading checkpoint and recover epoch id.
-    CKPT_PATH = "./saved_model/model.h5"
+    CKPT_PATH = "./saved_model/model2.h5"
     def get_checkpoint(ckpt_path):
         try:
             ckpt = torch.load(ckpt_path)
@@ -297,6 +294,6 @@ def run(mytransform, trial):
             state = {'net': net.state_dict(),
                     'epoch': i,
                     'lr': current_learning_rate}
-            torch.save(state, os.path.join(CHECKPOINT_PATH, 'model.h5'))
+            torch.save(state, os.path.join(CHECKPOINT_PATH, 'model2.h5'))
 
     print("Optimization finished.")
