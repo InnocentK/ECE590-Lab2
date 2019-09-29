@@ -76,8 +76,9 @@ def printOutput(epoch, val_acc, trial_no = 0):
     out_file.write(str(epoch) + "," + str(val_acc) + "\n")
     out_file.close()
 
-def run(mytransform, trial, lr = INITIAL_LR):
-    INITIAL_LR = lr
+def run(mytransform, trial, momentum = MOMENTUM, reg = REG):
+    MOMENTUM = momentum
+    REG = reg
     """
     Assignment 2(b)
     Write functions to load dataset and preprocess the incoming data. 
