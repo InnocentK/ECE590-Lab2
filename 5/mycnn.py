@@ -21,17 +21,17 @@ class InnocentNet(nn.Module):
         super(InnocentNet, self).__init__()
         
         self.conv1 = nn.Conv2d(3, 64, 3)
-        self.conv1_2 = nn.Conv2d(64, 64, 3)
+        self.conv12 = nn.Conv2d(64, 64, 3)
         self.conv1bn = nn.BatchNorm2d(64)
         self.conv2 = nn.Conv2d(64, 128, 3)
-        self.conv2_2 = nn.Conv2d(128, 128, 3)
+        self.conv22 = nn.Conv2d(128, 128, 3)
         self.conv2bn = nn.BatchNorm2d(128)
                 
         self.conv3 = nn.Conv2d(128, 256, 3)
-        self.conv3_2 = nn.Conv2d(256, 256, 3)
+        self.conv32 = nn.Conv2d(256, 256, 3)
         self.conv3bn = nn.BatchNorm2d(256)
         self.conv4 = nn.Conv2d(256, 512, 2)
-        self.conv4_2 = nn.Conv2d(512, 512, 2)
+        self.conv42 = nn.Conv2d(512, 512, 2)
         self.conv4bn = nn.BatchNorm2d(512)
        
         self.fc1 = nn.Linear(512*2*2, 1024)
@@ -41,22 +41,22 @@ class InnocentNet(nn.Module):
         
     def forward(self, x):
         out = F.relu(self.conv1bn(self.conv1(x)))
-        #out = F.relu(self.conv1_2(out))
+        #out = F.relu(self.conv12(out))
         out = F.max_pool2d(out, 2)
         #out = F.dropout2d(out, 0.05)
 
         out = F.relu(self.conv2bn(self.conv2(out)))
-        out = F.relu(self.conv2_2(out))
+        out = F.relu(self.conv22(out))
         out = F.max_pool2d(out, 2)
         out = F.dropout2d(out, 0.1)
         
         out = F.relu(self.conv3bn(self.conv3(out)))
-        out = F.relu(self.conv3_2(out))
+        out = F.relu(self.conv32(out))
         out = F.max_pool2d(out, 2)
         out = F.dropout2d(out, 0.25)
         
         out = F.relu(self.conv4bn(self.conv4(out)))
-        out = F.relu(self.conv4_2(out))
+        out = F.relu(self.conv42(out))
         out = F.max_pool2d(out, 2)
         out = F.dropout2d(out, 0.5)
         
