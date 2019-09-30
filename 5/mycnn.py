@@ -49,7 +49,7 @@ class InnocentNet(nn.Module):
         out = F.relu(self.conv3bn(self.conv3(out)))
         #out = F.relu(self.conv32(out))
         out = F.max_pool2d(out, 2)
-        out = F.dropout2d(out, 0.25)
+        out = F.dropout2d(out, 0.1)
         
         out = F.relu(self.conv4bn(self.conv4(out)))
         #out = F.relu(self.conv42(out))
@@ -127,7 +127,7 @@ else:
 # FLAG for loading the pretrained model
 TRAIN_FROM_SCRATCH = False
 # Code for loading checkpoint and recover epoch id.
-CKPT_PATH = "./saved_model/model2.h5"
+CKPT_PATH = "./saved_model/model.h5"
 def get_checkpoint(ckpt_path):
     try:
         ckpt = torch.load(ckpt_path)
@@ -256,6 +256,6 @@ for i in range(start_epoch, EPOCHS):
         state = {'net': net.state_dict(),
                 'epoch': i,
                 'lr': current_learning_rate}
-        torch.save(state, os.path.join(CHECKPOINT_PATH, 'model2.h5'))
+        torch.save(state, os.path.join(CHECKPOINT_PATH, 'model.h5'))
 
 print("Optimization finished.")
