@@ -32,8 +32,8 @@ class InnocentNet(nn.Module):
         self.conv4bn = nn.BatchNorm2d(64)
        
         self.fc1 = nn.Linear(64*2*2, 512)
-        self.fc2 = nn.Linear(512, 120)
-        self.fc3 = nn.Linear(120, 10)
+        self.fc2 = nn.Linear(512, 128)
+        self.fc3 = nn.Linear(128, 10)
         
         
     def forward(self, x):
