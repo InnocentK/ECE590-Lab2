@@ -49,7 +49,7 @@ class InnocentNet(nn.Module):
         out = F.relu(self.conv3bn(self.conv3(out)))
         #out = F.relu(self.conv32(out))
         out = F.max_pool2d(out, 2)
-        out = F.dropout2d(out, 0.25)
+        out = F.dropout2d(out, 0.1)
         
         out = F.relu(self.conv4bn(self.conv4(out)))
         #out = F.relu(self.conv42(out))
