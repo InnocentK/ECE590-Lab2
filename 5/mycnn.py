@@ -87,10 +87,10 @@ def printOutput(epoch, val_acc, trial_no = 0):
     out_file.write(str(epoch) + "," + str(val_acc) + "\n")
     out_file.close()
 
-def run(trial, decay=0.92, momentum=MOMENTUM, epochs=EPOCHS, loadTest=False):
-    #MOMENTUM = momentum
+def run(trial, decay=0.92, momentum=MOMENTUM, reg=REG, epochs=EPOCHS, loadTest=False):
+    MOMENTUM = momentum
     #REG = reg
-    #EPOCHS = epochs
+    EPOCHS = epochs
     #decay = 0.92
     #trial = 102
 
