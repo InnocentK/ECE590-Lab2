@@ -11,10 +11,10 @@ def main():
     #run(mytransform, 34, 0.05)
     #run(mytransform, 35, 0.02)
     #run(mytransform, 36, 0.01)
-    run(mytransform, 37, 1.10)
-    run(mytransform, 38, 1.25)
-    run(mytransform, 39, 1.50)
-    run(mytransform, 40, 2.00)
+    run(mytransform, 41, 0.95)
+    run(mytransform, 42, 0.90)
+    run(mytransform, 43, 0.85)
+    run(mytransform, 44, 0.80)
 
     #mytransforms = [
         #transforms.Compose([transforms.ToTensor(), NORMALIZE])#,
