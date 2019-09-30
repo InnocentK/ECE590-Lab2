@@ -76,6 +76,7 @@ def printOutput(epoch, val_acc, trial_no = 0):
 #REG = reg
 #EPOCHS = epochs
 decay = 0.92
+trial = 100
 
 transform_train = transforms.Compose([
     transforms.RandomHorizontalFlip(),
