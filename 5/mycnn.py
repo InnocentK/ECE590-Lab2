@@ -21,19 +21,14 @@ class InnocentNet(nn.Module):
         super(InnocentNet, self).__init__()
         
                 
-        self.conv1 = nn.Conv2d(3, 6, 2)
-        self.conv1bn = nn.BatchNorm2d(6)
-        self.conv2 = nn.Conv2d(6, 16, 2)
-        self.conv2bn = nn.BatchNorm2d(16)
+        self.conv1 = nn.Conv2d(128, 256, 3)
+        self.conv1bn = nn.BatchNorm2d(256)
+        self.conv2 = nn.Conv2d(256, 512, 3)
+        self.conv2bn = nn.BatchNorm2d(512)
        
-        self.conv3 = nn.Conv2d(16, 32, 2)
-        self.conv3bn = nn.BatchNorm2d(32)
-        self.conv4 = nn.Conv2d(32, 64, 2)
-        self.conv4bn = nn.BatchNorm2d(64)
-       
-        self.fc1 = nn.Linear(64*2*2, 512)
-        self.fc2 = nn.Linear(512, 128)
-        self.fc3 = nn.Linear(128, 10)
+        self.fc1 = nn.Linear(512*3*3, 1024)
+        self.fc2 = nn.Linear(1024, 100)
+        self.fc3 = nn.Linear(100, 10)
         
         
     def forward(self, x):
