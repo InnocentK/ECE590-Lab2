@@ -124,33 +124,28 @@ class CIFAR10():
     def extra_repr(self):
         return "Split: {}".format("Train" if self.train is True else "Test")
 
+# Modified version of CIFAR10 to be used with unlabeled data
 class CIFAR100():
 
-    def __init__(self, root, train=False, transform=None, target_transform=None,
-                 download=False):
+    def __init__(self, root, transform=None, download=False):
 
 
         self.url = "https://www.dropbox.com/s/1tk8nv0b57o1lr8/cifar10-batches-images-test.tar.gz?dl=0"
         self.filename = "cifar10-batches-images-test.npy"
         self.transform = transform
-        self.target_transform = target_transform
 
         self.root = root
         self.data = []
-        self.targets = []
-        self.train = train
+        self.targets = None
+        self.train = False
 
-        img_name = os.path.join(root, "cifar10-batches-images-test.npy")
-        target_name = os.path.join(root, "cifar10_train_val/cifar10-batches-labels-train.npy")
-
-
+        img_name = os.path.join(root, self.filename)
         self.data = np.load(img_name)
-        self.targets = np.load(target_name)
 
 
     def __getitem__(self, index):
 
-        img, target = self.data[index], self.targets[index]
+        img, target = self.data[index], None#self.targets[index]
 
         # doing this so that it is consistent with all other datasets
         # to return a PIL Image
@@ -158,9 +153,6 @@ class CIFAR100():
 
         if self.transform is not None:
             img = self.transform(img)
-
-        if self.target_transform is not None:
-            target = self.target_transform(target)
 
         return img, target
 

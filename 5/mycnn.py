@@ -11,6 +11,7 @@ import torchvision
 import torchvision.transforms as transforms
 import torch.optim as optim
 from tqdm import tqdm_notebook as tqdm
+import numpy as np
 
 # You cannot change this line.
 from tools.dataloader import CIFAR10, CIFAR100
@@ -112,8 +113,8 @@ trainset = CIFAR10(root=DATAROOT, train=True, download=True, transform=transform
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=TRAIN_BATCH_SIZE, shuffle=True, num_workers=4)
 valset = CIFAR10(root=DATAROOT, train=False, download=True, transform=transform_val)
 valloader = torch.utils.data.DataLoader(valset, batch_size=VAL_BATCH_SIZE, shuffle=False, num_workers=4)
-testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform_test)
-testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle=False, num_workers=16)
+testset = torchvision.datasets.CIFAR100(root='./data', train=False, download=True, transform=transform_test)
+testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, num_workers=16)
 
 # Specify the device for computation
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -236,7 +237,7 @@ for i in range(start_epoch, EPOCHS):
     avg_acc = correct_examples / total_examples
     print("Validation loss: %.4f, Validation accuracy: %.4f" % (avg_loss, avg_acc))
     printOutput(i, avg_acc.item(),trial)
-        
+
     DECAY_EPOCHS = 2
     DECAY = decay#1.00
     if i % DECAY_EPOCHS == 0 and i != 0:
@@ -259,3 +260,32 @@ for i in range(start_epoch, EPOCHS):
         torch.save(state, os.path.join(CHECKPOINT_PATH, 'model.h5'))
 
 print("Optimization finished.")
+
+loadTest = True
+if loadTest == True:
+
+        # Test on the testing dataset
+    print("Testing...")
+    total_examples = 0
+    correct_examples = 0
+    
+    net.eval()
+
+    test_loss = 0
+    test_acc = 0
+    test_labels = np.empty(0)
+    # Disable gradient during testing
+    with torch.no_grad():
+        for batch_idx, inputs in enumerate(testloader):
+            # Copy inputs to device
+            inputs = inputs.to(device)
+            # Zero the gradient
+            optimizer.zero_grad()
+            # Generate output from the DNN.
+            outputs = net(inputs)
+            # Calculate predicted labels
+            _, predicted = outputs.max(1)
+            test_labels = np.append(test_labels, predicted)
+
+    target_name = os.path.join(DATAROOT, "cifar10_train_val/cifar10-batches-labels-test.npy")
+    np.save(target_name, test_labels)
