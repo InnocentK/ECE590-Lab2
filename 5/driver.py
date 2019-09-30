@@ -8,5 +8,5 @@ def main():
     #run(102)
     #run(103, epochs=65)
     #run(103, epochs=100, loadTest=True)
-    run(epochs=0, loadTest=True)
+    run(104, epochs=0, loadTest=True)
 main()
