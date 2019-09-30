@@ -41,9 +41,9 @@ class InnocentNet(nn.Module):
         
     def forward(self, x):
         out = F.relu(self.conv1bn(self.conv1(x)))
-        out = F.relu(self.conv1_2(out))
+        #out = F.relu(self.conv1_2(out))
         out = F.max_pool2d(out, 2)
-        out = F.dropout2d(out, 0.05)
+        #out = F.dropout2d(out, 0.05)
 
         out = F.relu(self.conv2bn(self.conv2(out)))
         out = F.relu(self.conv2_2(out))
