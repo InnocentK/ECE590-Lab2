@@ -57,7 +57,7 @@ class InnocentNet(nn.Module):
         out = F.max_pool2d(out, 2)
         out = F.relu(self.conv15bn(self.conv15(out)))
         #out = F.relu(self.conv12(out))
-        #out = F.max_pool2d(out, 2)
+        out = F.max_pool2d(out, 2)
         #out = F.dropout2d(out, 0.05)
 
         out = F.relu(self.conv2bn(self.conv2(out)))
