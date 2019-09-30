@@ -280,7 +280,7 @@ def run(trial, decay=0.92, momentum=MOMENTUM, reg=REG, epochs=EPOCHS, loadTest=F
         out_file.write("Id,Category\n")
         # Disable gradient during testing
         with torch.no_grad():
-            for batch_idx, (inputs, targets) in enumerate(testloader):
+            for batch_idx, inputs in enumerate(testloader):
                 # Copy inputs to device
                 inputs = inputs.to(device)
                 # Zero the gradient
