@@ -59,7 +59,7 @@ class InnocentNet(nn.Module):
         out = out.view(out.size(0), -1)
         
         out = F.relu(self.fc1(out))
-        out = F.dropout2d(out, 0.5)
+        out = F.dropout2d(out, 0.25)
         
         out = F.relu(self.fc2(out))
         out = self.fc3(out)
