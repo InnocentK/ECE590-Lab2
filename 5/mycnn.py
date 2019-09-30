@@ -22,7 +22,7 @@ class InnocentNet(nn.Module):
         
                 
         self.conv1 = nn.Conv2d(3, 64, 2)
-        self.conv1bn = nn.BatchNorm2d(32)
+        self.conv1bn = nn.BatchNorm2d(64)
         self.conv2 = nn.Conv2d(64, 128, 2)
         self.conv2bn = nn.BatchNorm2d(128)
        
