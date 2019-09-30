@@ -114,7 +114,7 @@ trainloader = torch.utils.data.DataLoader(trainset, batch_size=TRAIN_BATCH_SIZE,
 valset = CIFAR10(root=DATAROOT, train=False, download=True, transform=transform_val)
 valloader = torch.utils.data.DataLoader(valset, batch_size=VAL_BATCH_SIZE, shuffle=False, num_workers=4)
 
-testset = torchvision.datasets.CIFAR100(root='./data', train=False, download=True, transform=transform_test)
+testset = CIFAR100(root=DATAROOT, download=True, transform=transform_test)
 testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, num_workers=16)
 
 # Specify the device for computation

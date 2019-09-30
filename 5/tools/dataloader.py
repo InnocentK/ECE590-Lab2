@@ -31,7 +31,7 @@ else:
     import pickle
 
 from torch.utils.data import Dataset as VisionDataset
-from tools.utils import check_integrity, download_and_extract_archive
+from tools.utils import check_integrity, download_and_extract_archive, download_url
 
 import shutil
 
@@ -163,7 +163,7 @@ class CIFAR100():
 
     def download(self):
         try:
-            download_and_extract_archive(self.url, self.root, filename=self.filename)
+            download_url(self.url, self.root, filename=self.filename)
         except Exception as e:
             print("Interrupted during dataset downloading. "
                   "Cleaning up...")
