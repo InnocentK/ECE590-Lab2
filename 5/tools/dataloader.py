@@ -72,6 +72,8 @@ class CIFAR10():
         if self.train:
             img_name = os.path.join(root, "cifar10_train_val/cifar10-batches-images-train.npy")
             target_name = os.path.join(root, "cifar10_train_val/cifar10-batches-labels-train.npy")
+        elif test:
+
         else:
             img_name = os.path.join(root, "cifar10_train_val/cifar10-batches-images-val.npy")
             target_name = os.path.join(root, "cifar10_train_val/cifar10-batches-labels-val.npy")
