@@ -139,17 +139,17 @@ class CIFAR100():
 
 
         self.url = "https://www.dropbox.com/s/1tk8nv0b57o1lr8/cifar10-batches-images-test.tar.gz?dl=0"
-        self.filename = "cifar10-batches-images-test.npy"
+        self.filename = "cifar10-batches-images-test.tar.gz"
         self.transform = transform
 
         self.root = root
-        if download:
-            self.download()
+        #if download:
+            #self.download()
         self.data = []
         self.targets = None
         self.train = False
 
-        img_name = os.path.join(root, self.filename)
+        img_name = os.path.join(root, "cifar10-batches-images-test.npy")
         self.data = np.load(img_name)
 
 
@@ -171,14 +171,11 @@ class CIFAR100():
 
     def download(self):
         try:
-            download_url(self.url, self.root, filename=self.filename)
+            download_and_extract_archive(self.url, self.root, filename=self.filename)
         except Exception as e:
             print("Interrupted during dataset downloading. "
                   "Cleaning up...")
             # Clean up
-            cwd = os.getcwd()
-            rm_path = os.path.join(cwd, self.root, "cifar10_trainval")
-            shutil.rmtree(rm_path)
             raise e
 
         print('Files already downloaded and verified')
