@@ -54,7 +54,7 @@ class CIFAR10():
     """
 
     def __init__(self, root, train=True, transform=None, target_transform=None,
-                 download=False, test=False):
+                 download=False):
 
 
         self.url = "https://www.dropbox.com/s/ow0wldxbxmqmtzz/cifar10_trainval.tar.gz?dl=1"
@@ -70,9 +70,6 @@ class CIFAR10():
         self.train = train
 
         if self.train:
-            img_name = os.path.join(root, "cifar10_train_val/cifar10-batches-images-train.npy")
-            target_name = os.path.join(root, "cifar10_train_val/cifar10-batches-labels-train.npy")
-        else if self.test:
             img_name = os.path.join(root, "cifar10_train_val/cifar10-batches-images-train.npy")
             target_name = os.path.join(root, "cifar10_train_val/cifar10-batches-labels-train.npy")
         else:
