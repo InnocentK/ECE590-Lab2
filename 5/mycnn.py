@@ -92,7 +92,7 @@ def printOutput(epoch, val_acc, trial_no = 0):
 #REG = reg
 #EPOCHS = epochs
 decay = 0.92
-trial = 100
+trial = 101
 
 transform_train = transforms.Compose([
     transforms.RandomHorizontalFlip(),
@@ -113,6 +113,7 @@ trainset = CIFAR10(root=DATAROOT, train=True, download=True, transform=transform
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=TRAIN_BATCH_SIZE, shuffle=True, num_workers=4)
 valset = CIFAR10(root=DATAROOT, train=False, download=True, transform=transform_val)
 valloader = torch.utils.data.DataLoader(valset, batch_size=VAL_BATCH_SIZE, shuffle=False, num_workers=4)
+
 testset = torchvision.datasets.CIFAR100(root='./data', train=False, download=True, transform=transform_test)
 testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, num_workers=16)
 
@@ -274,6 +275,9 @@ if loadTest == True:
     test_loss = 0
     test_acc = 0
     test_labels = np.empty(0)
+    label_file = "label.csv"
+    out_file = open(label_file, 'w')
+    out_file.write("Id,Category\n")
     # Disable gradient during testing
     with torch.no_grad():
         for batch_idx, inputs in enumerate(testloader):
@@ -285,7 +289,8 @@ if loadTest == True:
             outputs = net(inputs)
             # Calculate predicted labels
             _, predicted = outputs.max(1)
-            test_labels = np.append(test_labels, predicted)
-
-    target_name = os.path.join(DATAROOT, "cifar10_train_val/cifar10-batches-labels-test.npy")
-    np.save(target_name, test_labels)
+            out_file.write(str(batch_idx) + "," + str(predicted))
+            #test_labels = np.append(test_labels, predicted)
+    out_file.close()
+    #target_name = os.path.join(DATAROOT, "cifar10_train_val/cifar10-batches-labels-test.npy")
+    #np.save(target_name, test_labels)
