@@ -58,9 +58,9 @@ class CIFAR10():
 
 
         self.url = "https://www.dropbox.com/s/ow0wldxbxmqmtzz/cifar10_trainval.tar.gz?dl=1"
-        self.test_url = "https://www.dropbox.com/s/1tk8nv0b57o1lr8/cifar10-batches-images-test.tar.gz?dl=0"
+        #self.test_url = "https://www.dropbox.com/s/1tk8nv0b57o1lr8/cifar10-batches-images-test.tar.gz?dl=0"
         self.filename = "cifar10_trainval.tar.gz"
-        self.test_filename = "cifar10-batches-images-test.tar.gz"
+        #self.test_filename = "cifar10-batches-images-test.tar.gz"
         self.transform = transform
         self.target_transform = target_transform
         self.test = test
@@ -76,7 +76,7 @@ class CIFAR10():
             img_name = os.path.join(root, "cifar10_train_val/cifar10-batches-images-train.npy")
             target_name = os.path.join(root, "cifar10_train_val/cifar10-batches-labels-train.npy")
         elif self.test:
-            img_name = os.path.join(root, "cifar10_train_val/cifar10-batches-images-test.npy")
+            img_name = os.path.join(root, "cifar10-batches-images-test.npy")
             target_name = os.path.join(root, "cifar10_train_val/cifar10-batches-labels-train.npy")
         else:
             img_name = os.path.join(root, "cifar10_train_val/cifar10-batches-images-val.npy")
@@ -116,8 +116,6 @@ class CIFAR10():
     def download(self):
         try:
             download_and_extract_archive(self.url, self.root, filename=self.filename)
-            if self.test:
-                download_and_extract_archive(self.test_url, self.root, filename=self.test_filename)
         except Exception as e:
             print("Interrupted during dataset downloading. "
                   "Cleaning up...")
