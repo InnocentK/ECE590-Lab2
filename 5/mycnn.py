@@ -114,7 +114,7 @@ def run(trial, decay=0.92, momentum=MOMENTUM, reg=REG, epochs=EPOCHS, loadTest=F
     valset = CIFAR10(root=DATAROOT, train=False, download=True, transform=transform_val)
     valloader = torch.utils.data.DataLoader(valset, batch_size=VAL_BATCH_SIZE, shuffle=False, num_workers=4)
 
-    testset = CIFAR100(root=DATAROOT, train=False, transform=transform_test)
+    testset = CIFAR100(root=DATAROOT, transform=transform_test)
     testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, num_workers=16)
 
     # Specify the device for computation
