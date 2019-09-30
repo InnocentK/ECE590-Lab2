@@ -280,7 +280,7 @@ if loadTest == True:
     out_file.write("Id,Category\n")
     # Disable gradient during testing
     with torch.no_grad():
-        for batch_idx, (inputs, targets) in enumerate(testloader):
+        for batch_idx, inputs in enumerate(testloader):
             # Copy inputs to device
             inputs = inputs.to(device)
             # Zero the gradient
@@ -289,7 +289,7 @@ if loadTest == True:
             outputs = net(inputs)
             # Calculate predicted labels
             _, predicted = outputs.max(1)
-            out_file.write(str(batch_idx) + "," + str(predicted))
+            out_file.write(str(batch_idx) + "," + str( predicted.item() ) + "\n")
             #test_labels = np.append(test_labels, predicted)
     out_file.close()
     #target_name = os.path.join(DATAROOT, "cifar10_train_val/cifar10-batches-labels-test.npy")
