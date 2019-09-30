@@ -60,7 +60,7 @@ class CIFAR10():
         self.url = "https://www.dropbox.com/s/ow0wldxbxmqmtzz/cifar10_trainval.tar.gz?dl=1"
         self.test_url = "https://www.dropbox.com/s/1tk8nv0b57o1lr8/cifar10-batches-images-test.tar.gz?dl=0"
         self.filename = "cifar10_trainval.tar.gz"
-        self.test_filename = "cifar10-batches-images-test.npy"
+        self.test_filename = "cifar10_trainval/cifar10-batches-images-test.npy"
         self.transform = transform
         self.target_transform = target_transform
         self.test = test
