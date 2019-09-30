@@ -20,11 +20,15 @@ class InnocentNet(nn.Module):
     def __init__(self):
         super(InnocentNet, self).__init__()
         
+        self.conv1 = nn.Conv2d(3, 64, 3)
+        self.conv1bn = nn.BatchNorm2d(64)
+        self.conv2 = nn.Conv2d(64, 128, 3)
+        self.conv2bn = nn.BatchNorm2d(128)
                 
-        self.conv1 = nn.Conv2d(128, 256, 3)
-        self.conv1bn = nn.BatchNorm2d(256)
-        self.conv2 = nn.Conv2d(256, 512, 3)
-        self.conv2bn = nn.BatchNorm2d(512)
+        self.conv3 = nn.Conv2d(128, 256, 3)
+        self.conv3bn = nn.BatchNorm2d(256)
+        self.conv4 = nn.Conv2d(256, 512, 3)
+        self.conv4bn = nn.BatchNorm2d(512)
        
         self.fc1 = nn.Linear(512*3*3, 1024)
         self.fc2 = nn.Linear(1024, 100)
