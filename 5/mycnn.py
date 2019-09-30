@@ -265,7 +265,7 @@ print("Optimization finished.")
 loadTest = True
 if loadTest == True:
 
-        # Test on the testing dataset
+    # Test on the testing dataset
     print("Testing...")
     total_examples = 0
     correct_examples = 0
@@ -280,7 +280,7 @@ if loadTest == True:
     out_file.write("Id,Category\n")
     # Disable gradient during testing
     with torch.no_grad():
-        for batch_idx, inputs in enumerate(testloader):
+        for batch_idx, (inputs, targets) in enumerate(testloader):
             # Copy inputs to device
             inputs = inputs.to(device)
             # Zero the gradient

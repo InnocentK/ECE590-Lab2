@@ -54,7 +54,7 @@ class CIFAR10():
     """
 
     def __init__(self, root, train=True, transform=None, target_transform=None,
-                 download=False):
+                 download=False, test=False):
 
 
         self.url = "https://www.dropbox.com/s/ow0wldxbxmqmtzz/cifar10_trainval.tar.gz?dl=1"
@@ -70,6 +70,9 @@ class CIFAR10():
         self.train = train
 
         if self.train:
+            img_name = os.path.join(root, "cifar10_train_val/cifar10-batches-images-train.npy")
+            target_name = os.path.join(root, "cifar10_train_val/cifar10-batches-labels-train.npy")
+        else if self.test:
             img_name = os.path.join(root, "cifar10_train_val/cifar10-batches-images-train.npy")
             target_name = os.path.join(root, "cifar10_train_val/cifar10-batches-labels-train.npy")
         else:
@@ -135,6 +138,8 @@ class CIFAR100():
         self.transform = transform
 
         self.root = root
+        if download:
+            self.download()
         self.data = []
         self.targets = None
         self.train = False
@@ -158,6 +163,20 @@ class CIFAR100():
 
     def __len__(self):
         return len(self.data)
+
+        def download(self):
+        try:
+            download_and_extract_archive(self.url, self.root, filename=self.filename)
+        except Exception as e:
+            print("Interrupted during dataset downloading. "
+                  "Cleaning up...")
+            # Clean up
+            cwd = os.getcwd()
+            rm_path = os.path.join(cwd, self.root, "cifar10_trainval")
+            shutil.rmtree(rm_path)
+            raise e
+
+        print('Files already downloaded and verified')
 
     def extra_repr(self):
         return "Split: {}".format("Train" if self.train is True else "Test")
