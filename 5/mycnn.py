@@ -49,7 +49,7 @@ class InnocentNet(nn.Module):
         out = F.relu(self.conv3bn(self.conv3(out)))
         #out = F.relu(self.conv32(out))
         out = F.max_pool2d(out, 2)
-        out = F.dropout2d(out, 0.1)
+        out = F.dropout2d(out, 0.25)
         
         out = F.relu(self.conv4bn(self.conv4(out)))
         #out = F.relu(self.conv42(out))
@@ -71,7 +71,7 @@ VAL_BATCH_SIZE = 100
 INITIAL_LR = 0.1#0.01
 MOMENTUM = 0.85
 REG = 1e-5
-EPOCHS = 30
+EPOCHS = 100
 DATAROOT = "./data"
 CHECKPOINT_PATH = "./saved_model"
 OUTROOT = "./output"
