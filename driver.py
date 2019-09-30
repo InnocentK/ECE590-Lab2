@@ -5,9 +5,10 @@ def main():
     EPOCHS = 30
     MOMENTUM = 0.85
     mytransform = transforms.Compose([transforms.RandomHorizontalFlip(),transforms.ToTensor(), NORMALIZE])
-    run(mytransform, 55, DECAY, MOMENTUM, 60)
-    run(mytransform, 56, DECAY, 0.87, 60)
-    run(mytransform, 57, DECAY, 0.83, 60)
+    run(mytransform, 55, DECAY, MOMENTUM, 100)
+    run(mytransform, 56, DECAY, 0.84, 100)
+    run(mytransform, 55, 0.97, MOMENTUM, 100)
+    run(mytransform, 55, 0.92, MOMENTUM, 100)
 
     #mytransforms = [
         #transforms.Compose([transforms.ToTensor(), NORMALIZE])#,
