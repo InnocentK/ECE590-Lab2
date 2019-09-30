@@ -41,22 +41,22 @@ class InnocentNet(nn.Module):
         
     def forward(self, x):
         out = F.relu(self.conv1bn(self.conv1(x)))
-        out = F.relu(self.conv1bn(self.conv1_2(x)))
+        out = F.relu(self.conv1_2(x))
         out = F.max_pool2d(out, 2)
         out = F.dropout2d(out, 0.05)
 
         out = F.relu(self.conv2bn(self.conv2(out)))
-        out = F.relu(self.conv2bn(self.conv2_2(out)))
+        out = F.relu(self.conv2_2(out))
         out = F.max_pool2d(out, 2)
         out = F.dropout2d(out, 0.1)
         
         out = F.relu(self.conv3bn(self.conv3(out)))
-        out = F.relu(self.conv3bn(self.conv3_2(out)))
+        out = F.relu(self.conv3_2(out))
         out = F.max_pool2d(out, 2)
         out = F.dropout2d(out, 0.25)
         
         out = F.relu(self.conv4bn(self.conv4(out)))
-        out = F.relu(self.conv4bn(self.conv4_2(out)))
+        out = F.relu(self.conv4_2(out))
         out = F.max_pool2d(out, 2)
         out = F.dropout2d(out, 0.5)
         
