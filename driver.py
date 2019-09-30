@@ -1,18 +1,16 @@
 from lenet5cifar10 import *
 
 def main():
-    MOMENTUM = 0.9
-    REG = 1e-4
+    DECAY = 1.00
+    DECAY_EPOCHS = 2
     mytransform = transforms.Compose([transforms.ToTensor(), NORMALIZE])
-    run(mytransform, 20)
-    run(mytransform, 21, MOMENTUM, 1e-3)
-    run(mytransform, 22, MOMENTUM, 1e-5)
-    run(mytransform, 23, 0.85)
-    run(mytransform, 24, 0.85, 1e-3)
-    run(mytransform, 25, 0.85, 1e-5)
-    run(mytransform, 26, 0.95)
-    run(mytransform, 27, 0.95, 1e-3)
-    run(mytransform, 28, 0.95, 1e-5)
+    run(mytransform, 30)
+    run(mytransform, 31, 0.5)
+    run(mytransform, 32, 0.25)
+    run(mytransform, 33, 0.1)
+    run(mytransform, 34, 0.05)
+    run(mytransform, 35, 0.02)
+    run(mytransform, 36, 0.01)
 
     #mytransforms = [
         #transforms.Compose([transforms.ToTensor(), NORMALIZE])#,
