@@ -161,7 +161,7 @@ class CIFAR100():
     def __len__(self):
         return len(self.data)
 
-        def download(self):
+    def download(self):
         try:
             download_and_extract_archive(self.url, self.root, filename=self.filename)
         except Exception as e:
