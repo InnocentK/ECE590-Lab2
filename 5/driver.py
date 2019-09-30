@@ -1,4 +1,4 @@
-from lenet5cifar10 import *
+from mycnn import *
 
 def main():
     DECAY = 1.00
