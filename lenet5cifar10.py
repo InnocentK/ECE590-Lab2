@@ -59,8 +59,8 @@ here and comment the original hyperparameter settings.
 TRAIN_BATCH_SIZE = 128
 VAL_BATCH_SIZE = 100
 INITIAL_LR = 0.01
-MOMENTUM = 0.85#0.9
-REG = 1e-4
+MOMENTUM = 0.85
+REG = 1e-5
 EPOCHS = 30
 DATAROOT = "./data"
 CHECKPOINT_PATH = "./saved_model"
@@ -76,9 +76,10 @@ def printOutput(epoch, val_acc, trial_no = 0):
     out_file.write(str(epoch) + "," + str(val_acc) + "\n")
     out_file.close()
 
-def run(mytransform, trial, decay = 1.00, decay_epochs = 2):
-    #MOMENTUM = momentum
+def run(mytransform, trial, decay = 1.00, momentum = 0.85, epochs = 30):
+    MOMENTUM = momentum
     #REG = reg
+    EPOCHS = epochs
     """
     Assignment 2(b)
     Write functions to load dataset and preprocess the incoming data. 
@@ -278,7 +279,7 @@ def run(mytransform, trial, decay = 1.00, decay_epochs = 2):
         epochs to up to 100 during the process. Briefly describe what you 
         have tried to improve the performance of the LeNet-5 model.
         """
-        DECAY_EPOCHS = decay_epochs#2
+        DECAY_EPOCHS = 2
         DECAY = decay#1.00
         if i % DECAY_EPOCHS == 0 and i != 0:
             current_learning_rate = INITIAL_LR * (DECAY**(EPOCHS // DECAY_EPOCHS)) #optim.lr_scheduler.StepLR(optimizer,step_size=DECAY_EPOCHS,gamma=DECAY)

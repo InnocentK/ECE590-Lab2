@@ -2,19 +2,13 @@ from lenet5cifar10 import *
 
 def main():
     DECAY = 1.00
-    DECAY_EPOCHS = 2
-    mytransform = transforms.Compose([transforms.ToTensor(), NORMALIZE])
-    run(mytransform, 300)
-    #run(mytransform, 31, 0.5)
-    #run(mytransform, 32, 0.25)
-    #run(mytransform, 33, 0.1)
-    #run(mytransform, 34, 0.05)
-    #run(mytransform, 35, 0.02)
-    #run(mytransform, 36, 0.01)
-    run(mytransform, 41, 0.95)
-    run(mytransform, 42, 0.90)
-    run(mytransform, 43, 0.85)
-    run(mytransform, 44, 0.80)
+    EPOCHS = 30
+    MOMENTUM = 0.85
+    mytransform = transforms.Compose([transforms.RandomHorizontalFlip(),transforms.ToTensor(), NORMALIZE])
+    run(mytransform, 50)
+    run(mytransform, 51, MOMENTUM, 60)
+    run(mytransform, 52, 0.80, 70)
+    run(mytransform, 53, 0.75, 80)
 
     #mytransforms = [
         #transforms.Compose([transforms.ToTensor(), NORMALIZE])#,
