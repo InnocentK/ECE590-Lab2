@@ -6,8 +6,8 @@ def main():
     MOMENTUM = 0.85
     mytransform = transforms.Compose([transforms.RandomHorizontalFlip(),transforms.ToTensor(), NORMALIZE])
     #run(mytransform, 60, 0.92, MOMENTUM, 100)
-    run(mytransform, 60, 0.93, MOMENTUM, 100)
-    run(mytransform, 61, 0.91, MOMENTUM, 100)
+    run(mytransform, 60, 0.91, MOMENTUM, 100)
+    run(mytransform, 61, 0.90, MOMENTUM, 100)
     run(mytransform, 62, 0.89, MOMENTUM, 100)
 
     #mytransforms = [
