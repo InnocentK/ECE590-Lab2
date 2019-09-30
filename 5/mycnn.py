@@ -21,7 +21,7 @@ class InnocentNet(nn.Module):
         super(InnocentNet, self).__init__()
         
                 
-        self.conv1 = nn.Conv2d(3, 64, 3)
+        self.conv1 = nn.Conv2d(2, 64, 3)
         self.conv1bn = nn.BatchNorm2d(64)
         self.conv2 = nn.Conv2d(64, 128, 3)
         self.conv2bn = nn.BatchNorm2d(128)
