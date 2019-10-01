@@ -302,5 +302,3 @@ def run(trial, reg=REG, decay=0.92, momentum=MOMENTUM, epochs=EPOCHS, lr=INITIAL
                 out_file.write(str(batch_idx) + "," + str( predicted.item() ) + "\n")
                 #test_labels = np.append(test_labels, predicted)
         out_file.close()
-        #target_name = os.path.join(DATAROOT, "cifar10_train_val/cifar10-batches-labels-test.npy")
-        #np.save(target_name, test_labels)

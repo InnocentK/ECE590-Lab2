@@ -10,7 +10,6 @@ def main():
     lr1 = 0.1
     lr2 = 0.01
     
-
     DECAY = 0.92
     dmax = 1.00
     dmin = 0.85
@@ -50,6 +49,6 @@ def main():
             run(i, reg, decay, momentum, ep2, lr, i, True)
         else:
             run(i, reg, decay, momentum, ep2, lr, i, False)
-            run(i, reg, decay, momentum, ep3, lr, i, False)
+            run(i, reg, decay, momentum, ep3, lr, i, True)
 
 main()
