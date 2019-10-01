@@ -58,15 +58,17 @@ class CIFAR10():
 
 
         self.url = "https://www.dropbox.com/s/ow0wldxbxmqmtzz/cifar10_trainval.tar.gz?dl=1"
-        #self.test_url = "https://www.dropbox.com/s/1tk8nv0b57o1lr8/cifar10-batches-images-test.tar.gz?dl=0"
+        self.test_url = "https://www.dropbox.com/s/1tk8nv0b57o1lr8/cifar10-batches-images-test.tar.gz?dl=0"
         self.filename = "cifar10_trainval.tar.gz"
-        #self.test_filename = "cifar10-batches-images-test.tar.gz"
+        self.test_filename = "cifar10-batches-images-test.tar.gz"
         self.transform = transform
         self.target_transform = target_transform
         self.test = test
 
         self.root = root
-        if download:
+        if download and test:
+            self.test_download()
+        elif download:
             self.download()
         self.data = []
         self.targets = []
@@ -127,53 +129,12 @@ class CIFAR10():
 
         print('Files already downloaded and verified')
 
-    def extra_repr(self):
-        return "Split: {}".format("Train" if self.train is True else "Test")
-
-# Modified version of CIFAR10 to be used with unlabeled data
-class CIFAR100():
-
-    def __init__(self, root, transform=None, download=False):
-
-
-        self.url = "https://www.dropbox.com/s/1tk8nv0b57o1lr8/cifar10-batches-images-test.tar.gz?dl=0"
-        self.filename = "cifar10-batches-images-test.tar.gz"
-        self.transform = transform
-
-        self.root = root
-        #if download:
-            #self.download()
-        self.data = []
-        self.targets = None
-        self.train = False
-
-        img_name = os.path.join(root, "cifar10-batches-images-test.npy")
-        self.data = np.load(img_name)
-
-
-    def __getitem__(self, index):
-
-        img, target = self.data[index], None#self.targets[index]
-
-        # doing this so that it is consistent with all other datasets
-        # to return a PIL Image
-        img = Image.fromarray(img)
-
-        if self.transform is not None:
-            img = self.transform(img)
-
-        return img, target
-
-    def __len__(self):
-        return len(self.data)
-
-    def download(self):
+    def test_download(self):
         try:
-            download_and_extract_archive(self.url, self.root, filename=self.filename)
+            download_and_extract_archive(self.test_url, self.root, filename=self.test_filename)
         except Exception as e:
             print("Interrupted during dataset downloading. "
-                  "Cleaning up...")
-            # Clean up
+                  " No clean up required...")
             raise e
 
         print('Files already downloaded and verified')
